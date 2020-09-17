@@ -1,0 +1,118 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = "***"
+}
+
+model User {
+  id           Int             @id @default(autoincrement())
+  name         String          @unique
+  email        String          @unique
+  password     String          @unique 
+  groups       Group[]         
+  events       Event[]         
+}
+
+model Group {
+  id               Int          @id @default(autoincrement()) 
+  createdAt        DateTime     @default(now())
+  birthday         DateTime     
+  author           User         @relation(fields: [authorId], references: [id])
+  authorId         Int
+  name             String       @default("New AA Group")
+  description      String       @default("Blah-blah-blah")
+  city             String
+  region           RegionEnum
+  isActive         Boolean      @default(true)
+  phone            String
+  email            String
+  address          String
+  website          String
+  location         Location
+  meetings         Meeting[]    
+}
+
+model Meeting  {
+  id               Int          @id @default(autoincrement()) 
+  group            Group        @relation(fields: [groupId], references: [id])
+  groupId          Int 
+  name             String       @default("New AA Meeting")
+  weekday          WeekdayEnum
+  time             DateTime 
+  model            MeetingEnum  @default(Closed)
+} 
+
+model Event {
+  id               Int         @id @default(autoincrement()) 
+  author           User        @relation(fields: [authorId], references: [id])
+  authorId         Int
+  name             String       
+  dateStart        DateTime
+  dateEnd          DateTime
+  city             String
+  location         Location
+  address          String  
+  description      String       
+  agenda           String        
+  contact          Contact[]     
+  image            Image
+  programUrl       String
+}
+
+model Location {
+  id               Int          @id @default(autoincrement()) 
+  GroupRel         Group        @relation(fields: [GroupId], references: [id])
+  GroupId          Int
+  EventRel         Event        @relation(fields: [EventId], references: [id])
+  EventId          Int
+  lattitude        Float
+  longitude        Float
+}  
+
+model Image {
+  id               Int          @id @default(autoincrement())
+  EventRel         Event        @relation(fields: [EventId], references: [id])
+  EventId          Int
+  publicId         String      
+  cloudinaryUrl    String       
+}
+
+model Contact {
+  id               Int          @id @default(autoincrement()) 
+  EventRel         Event        @relation(fields: [EventId], references: [id])
+  EventId          Int
+  name             String
+  phone            String
+  responsibility   String       @default("Координатор")
+}
+
+enum WeekdayEnum {
+  Mo
+  Tu
+  We
+  Th
+  Fr
+  Sa
+  Su
+}
+
+enum MeetingEnum {
+  Open
+  Closed 
+  Speaker
+  TwelveSteps
+  Reflections
+}
+
+enum RegionEnum {
+  All
+  Minskaya
+  Brestskaya
+  Gomelskaya
+  Mogilevskaya
+  Grodnenskaya
+  Vitebskaya
+}

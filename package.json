@@ -1,0 +1,23 @@
+{
+  "name": "aa-server",
+  "version": "1.1.0",
+  "main": "src/index.js",
+  "author": "svirins",
+  "license": "MIT",
+  "description": "AA meetings locator - backend",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
+    "faker": "^4.1.0",
+    "graphql": "^15.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "nexus-plugin-prisma": "^0.18.2"
+  },
+  "devDependencies": {
+    "@types/node": "^14.10.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/svirins/apollo-prisma-nexus-server.git"
+  }
+}
