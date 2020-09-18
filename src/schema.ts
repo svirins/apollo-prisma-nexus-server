@@ -1,5 +1,6 @@
 import * as path from "path";
-import * as types from "./types";
+// switch ./models to ./types
+import * as types from "./models";
 import { makeSchema } from "@nexus/schema";
 import { nexusSchemaPrisma } from "nexus-plugin-prisma/schema";
 

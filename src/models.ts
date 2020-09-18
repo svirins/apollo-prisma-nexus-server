@@ -20,7 +20,7 @@ export const Profile = objectType({
         t.model.id(),
         t.model.socialId(),
         t.model.authType(),
-        t.model.verified(),
+        t.model.verified()
     }
 })
 
@@ -43,7 +43,7 @@ export const Group = objectType({
         t.model.location({
             type: 'Location',
         }),
-        t.model.meetings({pagination: false}),
+        t.model.meetings({pagination: false})
     }
 })
 
@@ -55,7 +55,7 @@ export const Meeting = objectType({
         t.model.name(),
         t.model.weekday(),
         t.model.time(),
-        t.model.type(),
+        t.model.type()
     }
 })
 
@@ -75,10 +75,7 @@ export const Event = objectType({
         t.model.description(),
         t.model.agenda(),
         t.model.contact(),
-        t.modal.image(
-            type: 'Image',
-        )
-        t.modal.programUrl(),
+        t.modal.programUrl()
     }
 })
 
@@ -89,17 +86,7 @@ export const Location = objectType({
         t.model.groupRel(),
         t.model.eventRel(),
         t.model.latitude(),
-        t.model.longitude(),
-    }
-})
-
-export const Image = objectType({
-    name: 'Image',
-    definition(t) {
-        t.model.id(),
-        t.model.eventRel(),
-        t.model.publicId(),
-        t.model.cloudinaryUrl(),
+        t.model.longitude()
     }
 })
 
@@ -110,7 +97,7 @@ export const Contact = objectType({
         t.model.eventRel(),
         t.model.name(),
         t.model.phone(),
-        t.model.responsibility(),
+        t.model.responsibility()
     }
 })
 
